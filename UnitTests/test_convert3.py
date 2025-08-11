@@ -1,0 +1,18 @@
+import pytest
+from convert1 import convert
+
+
+def test_int_conversion():
+    assert convert(1) == 149597870700
+    assert convert(50) == 7479893535000
+
+
+def test_error():
+    with pytest.raises(TypeError): # Expecting TypeError when passing a string
+        convert("1")
+
+
+def test_float_conversion():
+    assert convert(0.001) == pytest.approx(149597870.691, abs=0.1) 
+    # Using pytest.approx for floating-point comparison
+    # abs means absolute tolerance
